@@ -1,0 +1,42 @@
+{
+  "NavbarItems": {
+    "cart": "Ir al carrito",
+    "account": "Detalles de Usuario",
+    "home": "Inicio"
+  },
+  "SearchInput": {
+    "placeholder": "Buscar"
+  },
+  "LocaleSwitcher": {
+    "languages": "Idiomas",
+    "label": "Cambiar idioma",
+    "locale": "{locale, select, es {Español} en {English} other {Unknown}}"
+  },
+  "Sidebar": {
+    "catalog": "Catalogo",
+    "categories": "Categorias",
+    "tags": "Etiquetas",
+    "clear": "Limpiar todo",
+    "filter": "Filtro",
+    "empty": "Sin tarjetas"
+  },
+  "CartButton": {
+    "addToCart": "Agregar al carrito",
+    "alt": "Icono de carrito"
+  },
+  "ViewToggle": {
+    "grid": "Vista de cuadrícula",
+    "list": "Vista de lista"
+  },
+  "InfiniteScroll": {
+    "loading": "Cargando...",
+    "noMore": "No hay más productos por cargar",
+    "totalProducts": "{total} productos cargados",
+    "retry": "Reintentar",
+    "error": "Error",
+    "total": "{total} productos en total"
+  },
+  "Details": {
+    "categories": "Categorias"
+  }
+}

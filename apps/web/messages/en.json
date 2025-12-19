@@ -1,0 +1,42 @@
+{
+  "NavbarItems": {
+    "cart": "Go to the cart",
+    "account": "Account Details",
+    "home": "Home"
+  },
+  "SearchInput": {
+    "placeholder": "Search"
+  },
+  "LocaleSwitcher": {
+    "languages": "Languages",
+    "label": "Change language",
+    "locale": "{locale, select, es {Spanish} en {English} other {Unknown}}"
+  },
+  "Sidebar": {
+    "catalog": "Catalog",
+    "categories": "Categories",
+    "tags": "Tags",
+    "clear": "Clear all",
+    "filter": "Filter",
+    "empty": "Empty tags"
+  },
+  "CartButton": {
+    "addToCart": "Add to cart",
+    "alt": "Cart icon"
+  },
+  "ViewToggle": {
+    "grid": "Grid view",
+    "list": "List view"
+  },
+  "InfiniteScroll": {
+    "loading": "Loading...",
+    "noMore": "No more products to load",
+    "totalProducts": "{total} products loaded",
+    "retry": "Retry",
+    "error": "Error",
+    "total": "{total} products in total"
+  },
+  "Details": {
+    "categories": "Categories"
+  }
+}
