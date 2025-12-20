@@ -2,7 +2,7 @@
 "use client";
 
 import { validateCounterInput } from "@/lib/utils/validations/counter-input-schemas";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface UseCounterInputProps {
   initialAmount: number;
@@ -27,11 +27,18 @@ export function useCounterInput({
 
   useEffect(() => {
     if (!isEditing) {
+      setAmount(initialAmount);
+      setInputValue(initialAmount.toString());
+    }
+  }, [initialAmount, isEditing]);
+
+  useEffect(() => {
+    if (!isEditing) {
       setInputValue(amount.toString());
     }
   }, [amount, isEditing]);
 
-  const handleValidation = (value: string): number | null => {
+  const handleValidation = useCallback((value: string): number | null => {
     const result = validateCounterInput(value, min, max, t);
 
     if (!result.isValid && onError && result.error) {
@@ -40,21 +47,23 @@ export function useCounterInput({
     }
 
     return result.value || min;
-  };
+  }, [min, max, t, onError]);
 
-  const updateAmount = (newAmount: number) => {
+  const updateAmount = useCallback((newAmount: number): number => {
     const validated = Math.max(min, Math.min(max, newAmount));
     setAmount(validated);
     return validated;
-  };
+  }, [min, max]);
 
-  const increment = () => {
-    return updateAmount(amount + step);
-  };
+  const increment = useCallback((): number => {
+    const newAmount = updateAmount(amount + step);
+    return newAmount;
+  }, [amount, step, updateAmount]);
 
-  const decrement = () => {
-    return updateAmount(amount - step);
-  };
+  const decrement = useCallback((): number => {
+    const newAmount = updateAmount(amount - step);
+    return newAmount;
+  }, [amount, step, updateAmount]);
 
   const handleInputChange = (value: string) => {
     if (value === "" || /^\d+$/.test(value)) {
@@ -63,18 +72,23 @@ export function useCounterInput({
     }
   };
 
-  const handleInputSubmit = () => {
+  const handleInputSubmit = useCallback((): number | null => {
     setIsEditing(false);
     const validated = handleValidation(inputValue);
+    
     if (validated !== null) {
-      setAmount(validated);
+      const newAmount = updateAmount(validated);
       setInputValue(validated.toString());
+      return newAmount;
+    } else {
+      setInputValue(amount.toString());
+      return null;
     }
-  };
+  }, [inputValue, amount, handleValidation, updateAmount]);
 
-  const handleInputBlur = () => {
-    handleInputSubmit();
-  };
+  const handleInputBlur = useCallback((): number | null => {
+    return handleInputSubmit();
+  }, [handleInputSubmit]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {

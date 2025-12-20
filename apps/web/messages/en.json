@@ -53,5 +53,16 @@
       "minValue": "Minimum value is {min}",
       "maxValue": "Maximum value is {max}"
     }
+  },
+  "CartItem": {
+    "remove": "Remove item",
+    "eachOne": "ea."
+  },
+  "CartSummary": {
+    "subtotal": "Subtotal",
+    "cart": "Cart({count})",
+    "items": "Items",
+    "quantity": "Qty",
+    "empty": "Your cart is empty"
   }
 }

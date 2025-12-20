@@ -1,6 +1,5 @@
 import { User } from "lucide-react";
 import { Button } from "../ui/button";
-import { SearchInput } from "./search-input";
 import LocaleSwitcher from "../locale-switcher/locale-switcher";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { useTranslations } from "next-intl";

@@ -4,8 +4,11 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { CartButton } from "@/components/products/add-to-cart-button";
+import { AddToCartButton } from "@/components/products/add-to-cart-button";
 import { generateSlug } from "@/lib/utils/slugify";
+import { CounterInput } from "../shared/counter-input";
+import { useState } from "react";
+import { useCart } from "@/hooks/use-cart";
 
 export interface Product {
   id: string;
@@ -26,10 +29,18 @@ export function ProductCard({
   viewMode = "grid",
   className,
 }: Readonly<ProductCardProps>) {
+  const [amount, setAmount] = useState(1);
+  const { addToCart } = useCart();
+
+  const hoverTransition =
+    "transition-all duration-300 opacity-0 transform translate-y-2 scale-95 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100";
+  
+  const handleAddToCart = () => {addToCart(product, amount)};
+
   return (
     <Link
       href={`/products/${generateSlug(product.name)}/${product.id}`}
-      className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:rounded-xl"
+      className="h-full block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:rounded-xl"
     >
       <Card
         className={cn(
@@ -45,10 +56,10 @@ export function ProductCard({
       >
         <div
           className={cn(
-            "relative shrink-0 bg-white rounded-xl overflow-hidden",
+            "relative shrink-0 bg-white rounded-xl overflow-hidden aspect-square",
             viewMode === "grid"
-              ? "aspect-square w-full max-h-[280px]"
-              : "h-full aspect-square w-[100px] sm:w-[120px] md:w-[140px] lg:w-40"
+              ? "w-full max-h-[280px]"
+              : "h-full  w-[100px] sm:w-[120px] md:w-[140px] lg:w-[160px]"
           )}
         >
           <Image
@@ -61,18 +72,17 @@ export function ProductCard({
                 ? "(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 280px"
                 : "(max-width: 640px) 100px, (max-width: 768px) 120px, (max-width: 1024px) 140px, 160px"
             }
-            loading="eager"
           />
 
           {viewMode === "grid" && (
             <div
-              className="absolute bottom-4 right-4"
+              className={`absolute bottom-4 right-4 ${hoverTransition}`}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
               }}
             >
-              <CartButton size="md" />
+              <AddToCartButton variant="icon-only" size="md" onClick={handleAddToCart} />
             </div>
           )}
         </div>
@@ -82,14 +92,14 @@ export function ProductCard({
             "flex flex-col h-full w-full min-w-0 p-0 relative",
             viewMode === "grid"
               ? "px-1 py-3 space-y-3 flex-1"
-              : "px-2 pb-2 sm:px-3 md:px-4 lg:px-5 grow min-h-[100px] sm:min-h-[120px] md:min-h-[140px] lg:min-h-40"
+              : "px-2 pb-2 sm:px-3 md:px-4 lg:px-5 grow min-h-[100px] sm:min-h-[120px] md:min-h-[140px] lg:min-h-[160px]"
           )}
         >
           <h3
             className={cn(
               "font-semibold text-primary",
               viewMode === "grid"
-                ? "text-lg line-clamp-2 mt-2 mb-1 min-h-12"
+                ? "text-lg line-clamp-2 mt-2 mb-1 min-h-[3rem]"
                 : "text-sm sm:text-base md:text-lg lg:text-xl line-clamp-1 mb-1 sm:mb-2 md:mb-3"
             )}
           >
@@ -106,21 +116,36 @@ export function ProductCard({
 
           <div className={cn("mt-auto", viewMode === "list" && "w-full")}>
             {viewMode === "grid" ? (
-              <span className="font-bold text-foreground text-xl tracking-tight">
-                ${product.price.toFixed(2)}
-              </span>
+              <div className="flex flex-col gap-3 justify-between w-full">
+                <span className="font-bold text-foreground text-xl tracking-tight">
+                  ${product.price.toFixed(2)}
+                </span>
+                <div
+                  className={`flex self-center items-center ${hoverTransition}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                >
+                  <CounterInput amount={amount} setAmount={setAmount} />
+                </div>
+              </div>
             ) : (
               <div className="flex items-center justify-between w-full">
                 <span className="font-bold text-foreground text-base sm:text-lg md:text-xl lg:text-2xl tracking-tight">
                   ${product.price.toFixed(2)}
                 </span>
                 <div
+                  className={`flex items-center gap-3 ${hoverTransition}`}
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                   }}
                 >
-                  <CartButton
+                  <CounterInput amount={amount} setAmount={setAmount} />
+                  <AddToCartButton
+                    onClick={handleAddToCart}
+                    variant="icon-only"
                     size="sm"
                     className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9"
                   />

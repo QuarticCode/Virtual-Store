@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CounterInput } from "../shared/counter-input";
-import { AddCart } from "./add-cart";
 import { Share2 } from "lucide-react";
 import { Button } from "../ui/button";
 import { DetailsSkeleton } from "./details-skeleton";
@@ -11,6 +10,9 @@ import { ProductDetails } from "@/lib/api";
 import { NotFoundProduct } from "./not-found-product";
 import { Badge } from "../ui/badge";
 import { BreadCrumbCategory } from "./bread-crumb-category";
+import { AddToCartButton } from "../products/add-to-cart-button";
+import { useCart } from "@/hooks/use-cart";
+import { Product } from "../products/product-card";
 
 type Props = {
   productId: number;
@@ -20,6 +22,7 @@ export default function Details({ productId }: Props) {
   const [loading, setLoading] = useState<boolean>(true);
   const [product, setProduct] = useState<ProductDetails>();
   const [amount, setAmount] = useState<number>(1);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -44,6 +47,20 @@ export default function Details({ productId }: Props) {
     loadCategories();
   }, [productId]);
 
+  const handleAddToCart = () => {
+    if (!product) return;
+    
+    const productForCart: Product = {
+      id: product.id.toString(),
+      name: product.name,
+      description: product.long_description,
+      price: product.price,
+      imageUrl: product.thumbnail,
+    };
+
+    addToCart(productForCart, amount);
+  };
+
   if (loading || !product) {
     return <DetailsSkeleton />;
   }
@@ -56,7 +73,7 @@ export default function Details({ productId }: Props) {
           alt="Product Image"
           width={500}
           height={500}
-          src={product.imageUrl}
+          src={product.thumbnail}
           className="lg:max-w-lg lg:max-h-lg lg:w-lg lg:h-lg md:max-w-md md:max-h-md w-full h-full"
         />
         <div className="flex flex-col justify-evenly lg:w-md w-full gap-8 p-4 rounded-2xl">
@@ -84,7 +101,7 @@ export default function Details({ productId }: Props) {
           </div>
           <div className="flex flex-row md:flex-nowrap flex-wrap gap-4 items-center max-h-8">
             <CounterInput amount={amount} setAmount={setAmount} />
-            <AddCart />
+            <AddToCartButton variant="with-text" size="sm" onClick={handleAddToCart} />
             <Button className=" max-h-8 font-semibold">
               <Share2 />
               Share

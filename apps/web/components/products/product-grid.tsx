@@ -20,7 +20,7 @@ export function ProductGrid({
 
   if (isLoading && products.length === 0) {
     return (
-      <div className={`${gridClasses} transition-all duration-1000 ease-out`}>
+      <div className={`${gridClasses} transition-all duration-1000 ease-out items-stretch`}>
         {Array.from({ length: 8 }).map((_, i) => (
           <ProductCardSkeleton key={i} viewMode={viewMode} />
         ))}

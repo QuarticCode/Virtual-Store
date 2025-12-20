@@ -4,7 +4,7 @@ export type RawCategory = {
   id: number;
   name: string;
   parent: number;
-  imageUrl: string;
+  thumbnail: string;
   icon_name: string;
   enabled: boolean;
 };

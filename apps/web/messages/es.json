@@ -53,5 +53,16 @@
       "minValue": "El valor mínimo es {min}",
       "maxValue": "El valor máximo es {max}"
     }
+  },
+  "CartItem": {
+    "remove": "Eliminar conjunto",
+    "eachOne": "c/u"
+  },
+  "CartSummary": {
+    "subtotal": "Subtotal",
+    "cart": "Carrito({count})",
+    "items": "Elementos",
+    "quantity": "Qty",
+    "empty": "Tu carrito está vacío"
   }
 }
