@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Product } from "../products/product-card";
 import { TableCell, TableRow } from "../ui/table";
-import { CountProduct } from "../details/count-product";
+import { CounterInput } from "../shared/counter-input";
 import { useState } from "react";
 import { Trash2 } from "lucide-react";
 
@@ -21,7 +21,7 @@ export function CartItem({ product }: { product: Product }) {
       </TableCell>
       <TableCell>{product.name}</TableCell>
       <TableCell>
-        <CountProduct amount={amount} setAmount={setAmount} />
+        <CounterInput amount={amount} setAmount={setAmount} />
       </TableCell>
       <TableCell className="text-center font-semibold">
         ${product.price * amount}

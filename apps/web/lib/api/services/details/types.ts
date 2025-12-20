@@ -6,14 +6,14 @@ export type ProductDetails = {
   id: number;
   reference: string;
   name: string;
-  short_description: string;
+  description: string;
   long_description: string;
   price: number;
   discount_price: number;
   deliveryPrice: number;
   inventoryAmount: number;
   orderPriority: number;
-  thumbnail: string;
+  imageUrl: string;
   primaryTag: string;
   secondaryTag: string;
   tertiaryTag: string;

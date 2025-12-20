@@ -1,6 +1,5 @@
 {
   "NavbarItems": {
-    "cart": "Go to the cart",
     "account": "Account Details",
     "home": "Home"
   },
@@ -38,5 +37,21 @@
   },
   "Details": {
     "categories": "Categories"
+  },
+  "Cart": {
+    "title": "Go to the cart",
+    "alt": "Cart icon",
+    "items": "{count} items"
+  },
+  "CounterInput": {
+    "decrease": "Decrease quantity",
+    "increase": "Increase quantity",
+    "quantity": "Product quantity",
+    "errors": {
+      "invalidNumber": "Please enter a valid number",
+      "invalidValue": "Invalid value",
+      "minValue": "Minimum value is {min}",
+      "maxValue": "Maximum value is {max}"
+    }
   }
 }

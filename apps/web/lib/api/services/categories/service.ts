@@ -38,7 +38,6 @@ export async function fetchCategories(
     .filter((item) => item.name !== "Todos los productos")
     .map(mapProduct);
 
-  console.log(filteredCategories);
   return {
     categories: filteredCategories,
   };

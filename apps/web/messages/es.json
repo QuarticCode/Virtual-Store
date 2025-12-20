@@ -1,6 +1,5 @@
 {
   "NavbarItems": {
-    "cart": "Ir al carrito",
     "account": "Detalles de Usuario",
     "home": "Inicio"
   },
@@ -38,5 +37,21 @@
   },
   "Details": {
     "categories": "Categorias"
+  },
+  "Cart": {
+    "title": "Ir al carrito",
+    "alt": "Icono de carrito",
+    "items": "{count} productos"
+  },
+  "CounterInput": {
+    "decrease": "Disminuir cantidad",
+    "increase": "Aumentar cantidad",
+    "quantity": "Cantidad de producto",
+    "errors": {
+      "invalidNumber": "Por favor ingresa un número válido",
+      "invalidValue": "Valor inválido",
+      "minValue": "El valor mínimo es {min}",
+      "maxValue": "El valor máximo es {max}"
+    }
   }
 }

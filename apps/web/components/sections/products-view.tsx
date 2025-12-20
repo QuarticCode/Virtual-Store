@@ -1,16 +1,19 @@
 import ProductsInfiniteScroll from "@/components/products/products-page-content";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
-import { fetchProductsServer } from "@/lib/api/services/products/service";
+import { ProductsResult } from "@/lib/api";
+import { SearchInput } from "../navbar/search-input";
 
-export default async function ProductsView() {
-  const initialData = await fetchProductsServer({
-    lastProductIndex: 0,
-    itemsPerPage: 10,
-  });
+interface Props {
+  initialData: ProductsResult;
+}
 
+export default async function ProductsView({ initialData }: Props) {
   return (
     <div className="container mx-auto px-8 md:px-12 lg:px-20 py-8 mt-20">
-      <div className="mb-6 text-2xl font-bold">Catalog</div>
+      <div className="flex flex-row justify-between">
+        <div className="mb-6 text-2xl font-bold">Catalog</div>
+        <SearchInput />
+      </div>
 
       <div className="flex flex-col lg:flex-row gap-8">
         <aside className="lg:w-1/4">

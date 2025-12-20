@@ -5,10 +5,10 @@ export type RawProduct = {
   discount_price: number;
   isFromFutureInventory: boolean;
   name: string;
-  short_description: string;
+  description: string;
   long_description: string;
   price: number;
-  thumbnail: string;
+  imageUrl: string;
   productsGroupId: number;
   metadata: string;
 };

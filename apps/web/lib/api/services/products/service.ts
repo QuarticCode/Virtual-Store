@@ -48,9 +48,9 @@ export async function fetchProductsServer(opts: ProductsFetchOptions): Promise<P
       products: data.items.map((item: RawProduct) => ({
         id: String(item.id),
         name: item.name,
-        description: item.short_description,
+        description: item.description,
         price: item.price,
-        imageUrl: item.thumbnail,
+        imageUrl: item.imageUrl,
       })),
       pagination: {
         lastProductIndex: data.pagination.last_product_index,

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { CountProduct } from "./count-product";
+import { CounterInput } from "../shared/counter-input";
 import { AddCart } from "./add-cart";
 import { Share2 } from "lucide-react";
 import { Button } from "../ui/button";
@@ -19,7 +19,7 @@ type Props = {
 export default function Details({ productId }: Props) {
   const [loading, setLoading] = useState<boolean>(true);
   const [product, setProduct] = useState<ProductDetails>();
-  const [amount, setAmount] = useState<number>(0);
+  const [amount, setAmount] = useState<number>(1);
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -56,7 +56,7 @@ export default function Details({ productId }: Props) {
           alt="Product Image"
           width={500}
           height={500}
-          src={product.thumbnail}
+          src={product.imageUrl}
           className="lg:max-w-lg lg:max-h-lg lg:w-lg lg:h-lg md:max-w-md md:max-h-md w-full h-full"
         />
         <div className="flex flex-col justify-evenly lg:w-md w-full gap-8 p-4 rounded-2xl">
@@ -83,7 +83,7 @@ export default function Details({ productId }: Props) {
             <p className="text-md font-light">{product.long_description}</p>
           </div>
           <div className="flex flex-row md:flex-nowrap flex-wrap gap-4 items-center max-h-8">
-            <CountProduct amount={amount} setAmount={setAmount} />
+            <CounterInput amount={amount} setAmount={setAmount} />
             <AddCart />
             <Button className=" max-h-8 font-semibold">
               <Share2 />
