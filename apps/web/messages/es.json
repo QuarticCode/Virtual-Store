@@ -59,10 +59,33 @@
     "eachOne": "c/u"
   },
   "CartSummary": {
+    "cart": "Carrito ({count})",
+    "empty": "Tu carrito está vacío",
+    "items": "Productos",
+    "quantity": "Cantidad",
     "subtotal": "Subtotal",
-    "cart": "Carrito({count})",
-    "items": "Elementos",
-    "quantity": "Qty",
-    "empty": "Tu carrito está vacío"
+    "searchPlaceholder": "Buscar productos...",
+    "filterPrice": "Filtrar por precio",
+    "allPrices": "Todos los precios",
+    "lowPrice": "Menos de $50",
+    "mediumPrice": "$50 - $100",
+    "highPrice": "Más de $100",
+    "clearFilters": "Limpiar filtros",
+    "sortByName": "Nombre",
+    "sortByPrice": "Precio",
+    "sortBySubtotal": "Subtotal",
+    "sortedBy": "Ordenado por",
+    "ascending": "ascendente",
+    "descending": "descendente",
+    "noResults": "No se encontraron productos con los filtros aplicados",
+    "filtered": "filtrados",
+    "details": "Detalles"
+  },
+  "Checkout": {
+    "summary": "Resumen",
+    "subTotal": "Subtotal",
+    "shipping": "Envío",
+    "total": "Total",
+    "checkout": "Pago"
   }
 }

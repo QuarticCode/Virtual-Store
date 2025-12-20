@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -9,6 +8,7 @@ import { Product } from "../products/product-card";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { useTranslations } from "next-intl";
+import { Button } from "../ui/button";
 
 export interface CartItem {
   product: Product;
@@ -37,7 +37,7 @@ export function CartItem({ cartItem }: Readonly<{ cartItem: CartItem }>) {
         <div
           className={cn(
             "relative bg-white rounded-xl overflow-hidden aspect-square",
-            "w-[80px] sm:w-[100px] md:w-[120px]"
+            "w-20 sm:w-[100px] md:w-[120px]"
           )}
         >
           <Image
@@ -93,10 +93,11 @@ export function CartItem({ cartItem }: Readonly<{ cartItem: CartItem }>) {
       <TableCell className="py-4 pr-4 md:pr-6">
         <Tooltip>
           <TooltipTrigger asChild>
-            <button
+            <Button
               onClick={handleRemove}
               className="p-2 hover:bg-general-button-hover transition-all duration-400 rounded-lg"
               aria-label="Eliminar producto"
+              variant={"ghost"}
             >
               <div className="relative w-5 h-5 sm:w-6 sm:h-6">
                 <Image
@@ -106,7 +107,7 @@ export function CartItem({ cartItem }: Readonly<{ cartItem: CartItem }>) {
                   className="object-contain filter brightness-50 dark:invert"
                 />
               </div>
-            </button>
+            </Button>
           </TooltipTrigger>
           <TooltipContent side="bottom">
             <p>{t("remove")}</p>

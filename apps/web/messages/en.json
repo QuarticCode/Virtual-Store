@@ -63,6 +63,29 @@
     "cart": "Cart({count})",
     "items": "Items",
     "quantity": "Qty",
-    "empty": "Your cart is empty"
+    "empty": "Your cart is empty",
+    "searchPlaceholder": "Search products...",
+    "filterPrice": "Filter per price",
+    "allPrices": "All prices",
+    "lowPrice": "Less than $50",
+    "mediumPrice": "$50 - $100",
+    "highPrice": "More than $100",
+    "clearFilters": "Clear filters",
+    "sortByName": "Name",
+    "sortByPrice": "Price",
+    "sortBySubtotal": "Subtotal",
+    "sortedBy": "Sort by",
+    "ascending": "Ascending",
+    "descending": "Descending",
+    "noResults": "No products were found with the applied filters",
+    "filtered": "filtered",
+    "details": "Details"
+  },
+  "Checkout": {
+    "summary": "Summary",
+    "subTotal": "Subtotal",
+    "shipping": "Shipping",
+    "total": "Total",
+    "checkout": "Checkout"
   }
 }

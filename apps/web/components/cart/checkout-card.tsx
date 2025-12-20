@@ -1,3 +1,6 @@
+"use client";
+
+import { useCart } from "@/hooks/use-cart";
 import { Button } from "../ui/button";
 import {
   Card,
@@ -6,28 +9,31 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import { useTranslations } from "next-intl";
 
 export function CheckoutCard() {
+  const { totalPrice } = useCart();
+  const t = useTranslations("Checkout");
   return (
     <Card className="w-md">
       <CardHeader className="m-0">
-        <CardTitle className="font-bold">Summary</CardTitle>
+        <CardTitle className="font-bold">{t("summary")}</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-row justify-between items-center">
-        <h3>Subtotal</h3>
-        <p>$0</p>
+        <h3>{t("subTotal")}</h3>
+        <p>${totalPrice}</p>
       </CardContent>
       <CardContent className="flex flex-row justify-between items-center">
-        <h3>Shipping</h3>
-        <p>$0</p>
+        <h3>{t("shipping")}</h3>
+        <p>$15</p>
       </CardContent>
       <CardFooter className="flex flex-col justify-between items-center">
         <CardContent className="flex flex-col w-full gap-4">
           <div className="flex flex-row justify-between items-center">
-            <h3>Total</h3>
-            <p>$0</p>
+            <h3>{t("total")}</h3>
+            <p>${totalPrice + 15}</p>
           </div>
-          <Button className="flex w-full text-center">Checkout</Button>
+          <Button className="flex w-full text-center">{t("checkout")}</Button>
         </CardContent>
       </CardFooter>
     </Card>

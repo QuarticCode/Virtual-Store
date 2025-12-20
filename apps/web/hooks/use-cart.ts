@@ -6,14 +6,14 @@ export const useCart = () => {
   return {
     items: store.items,
     totalItems: store.getTotalItems(),
-    totalPrice: store.getTotalPrice(),
-    
+    totalPrice: Number(store.getTotalPrice().toFixed(2)),
+
     addToCart: store.addItem,
     removeFromCart: store.removeItem,
     updateQuantity: store.updateQuantity,
     clearCart: store.clearCart,
     getItemQuantity: store.getItemQuantity,
-    
+
     isCartEmpty: store.items.length === 0,
     hasProduct: (productId: string) => store.getItemQuantity(productId) > 0,
   };

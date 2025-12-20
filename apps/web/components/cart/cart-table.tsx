@@ -1,19 +1,19 @@
 "use client";
 
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../ui/table";
-import { CartItem } from "./cart-item";
+import { Table, TableHead, TableHeader, TableRow } from "../ui/table";
 import { useCart } from "@/hooks/use-cart";
 import { useTranslations } from "next-intl";
+import { CartHeader } from "./filters/cart-header";
+import { FilterControls } from "./filters/filter-controls";
+import { CartTableBody } from "./filters/cart-table-body";
+import { SortInfo } from "./filters/sort-info";
+import { useCartFilters } from "@/hooks/use-cart-filters";
+import { SortButtons } from "./filters/short-buttons";
 
 export function CartTable() {
   const { items } = useCart();
   const t = useTranslations("CartSummary");
+  const { filteredItems, filters, actions } = useCartFilters(items);
 
   if (items.length === 0) {
     return (
@@ -25,23 +25,44 @@ export function CartTable() {
 
   return (
     <div className="flex flex-col lg:w-full min-w-4xl pb-12">
-      <h1 className="text-2xl font-bold m-2 mb-10">{t("cart", { count: items.length })}</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+        <CartHeader
+          totalItems={items.length}
+          filteredItemsCount={filteredItems.length}
+        />
+        <FilterControls
+          searchTerm={filters.searchTerm}
+          priceRange={filters.priceRange}
+          sortConfig={filters.sortConfig}
+          onSearchChange={actions.setSearchTerm}
+          onPriceRangeChange={actions.setPriceRange}
+          onClearFilters={actions.clearFilters}
+        />
+      </div>
+
+      <SortButtons
+        sortConfig={filters.sortConfig}
+        onSort={actions.handleSort}
+      />
+
       <Table>
         <TableHeader>
           <TableRow>
             <TableHead className="text-foreground">{t("items")}</TableHead>
-            <TableHead></TableHead>
+            <TableHead>
+              <div className="flex items-center gap-1">
+                {t("details", { defaultValue: "Detalles" })}
+              </div>
+            </TableHead>
             <TableHead className="text-foreground">{t("quantity")}</TableHead>
             <TableHead className="text-foreground">{t("subtotal")}</TableHead>
             <TableHead></TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
-          {items.map((cartItem) => (
-            <CartItem key={cartItem.product.id} cartItem={cartItem} />
-          ))}
-        </TableBody>
+        <CartTableBody items={filteredItems} />
       </Table>
+
+      <SortInfo sortConfig={filters.sortConfig} />
     </div>
   );
 }
