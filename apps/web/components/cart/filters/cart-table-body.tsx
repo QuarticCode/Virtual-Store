@@ -13,7 +13,7 @@ export function CartTableBody({ items }: CartTableBodyProps) {
 
   if (items.length === 0) {
     return (
-      <TableBody>
+      <TableBody className="lg:w-full w-screen">
         <TableRow>
           <TableCell
             colSpan={5}

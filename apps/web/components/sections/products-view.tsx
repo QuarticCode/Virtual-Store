@@ -1,7 +1,7 @@
 import ProductsInfiniteScroll from "@/components/products/products-page-content";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { ProductsResult } from "@/lib/api";
-import { SearchInput } from "../navbar/search-input";
+import { SearchInput } from "../search-input/search-input";
 
 interface Props {
   initialData: ProductsResult;

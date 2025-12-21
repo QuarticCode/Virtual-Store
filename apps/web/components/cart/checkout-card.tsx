@@ -15,7 +15,7 @@ export function CheckoutCard() {
   const { totalPrice } = useCart();
   const t = useTranslations("Checkout");
   return (
-    <Card className="w-md">
+    <Card className="sm:w-md w-full m-4">
       <CardHeader className="m-0">
         <CardTitle className="font-bold">{t("summary")}</CardTitle>
       </CardHeader>
@@ -31,7 +31,7 @@ export function CheckoutCard() {
         <CardContent className="flex flex-col w-full gap-4">
           <div className="flex flex-row justify-between items-center">
             <h3>{t("total")}</h3>
-            <p>${totalPrice + 15}</p>
+            <p>${Number((totalPrice + 15).toFixed(2))}</p>
           </div>
           <Button className="flex w-full text-center">{t("checkout")}</Button>
         </CardContent>

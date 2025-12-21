@@ -1,5 +1,5 @@
 import { Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { NavbarItems } from "./navbar-items";
 
@@ -13,6 +13,7 @@ export function NavbarSheet() {
       </SheetTrigger>
       <SheetContent>
         <SheetTitle></SheetTitle>
+        <SheetDescription></SheetDescription>
         <NavbarItems />
       </SheetContent>
     </Sheet>

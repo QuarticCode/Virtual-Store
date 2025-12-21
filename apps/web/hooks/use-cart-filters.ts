@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { CartTableFilters, PriceRange, SortConfig } from "@/types/cart-table";
 import { CartItem } from "@/components/cart/cart-item";
+import { removeAccents } from "@/lib/utils/remove-accents";
 
 export function useCartFilters(items: CartItem[]) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,10 +18,12 @@ export function useCartFilters(items: CartItem[]) {
     if (searchTerm) {
       result = result.filter(
         (item) =>
-          item.product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.product.description
-            ?.toLowerCase()
-            .includes(searchTerm.toLowerCase())
+          removeAccents(item.product.name.toLowerCase()).includes(
+            removeAccents(searchTerm.toLowerCase())
+          ) ||
+          removeAccents(item.product.description?.toLowerCase()).includes(
+            removeAccents(searchTerm.toLowerCase())
+          )
       );
     }
 

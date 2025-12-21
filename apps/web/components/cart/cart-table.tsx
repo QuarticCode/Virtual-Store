@@ -17,35 +17,36 @@ export function CartTable() {
 
   if (items.length === 0) {
     return (
-      <div className="lg:w-full min-w-4xl flex justify-center items-center">
+      <div className="lg:w-full flex justify-center items-center">
         <p className="text-muted-foreground">{t("empty")}</p>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col lg:w-full min-w-4xl pb-12">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-        <CartHeader
-          totalItems={items.length}
-          filteredItemsCount={filteredItems.length}
-        />
-        <FilterControls
-          searchTerm={filters.searchTerm}
-          priceRange={filters.priceRange}
+    <div className="flex flex-col xl:w-full w-screen xl:m-0 p-8">
+      <div className="flex flex-col md:flex-row md:justify-between justify-center items-start md:items-center mb-6 gap-4">
+        <div className="flex flex-col">
+          <CartHeader
+            totalItems={items.length}
+            filteredItemsCount={filteredItems.length}
+          />
+          <FilterControls
+            searchTerm={filters.searchTerm}
+            priceRange={filters.priceRange}
+            sortConfig={filters.sortConfig}
+            onSearchChange={actions.setSearchTerm}
+            onPriceRangeChange={actions.setPriceRange}
+            onClearFilters={actions.clearFilters}
+          />
+        </div>
+        <SortButtons
           sortConfig={filters.sortConfig}
-          onSearchChange={actions.setSearchTerm}
-          onPriceRangeChange={actions.setPriceRange}
-          onClearFilters={actions.clearFilters}
+          onSort={actions.handleSort}
         />
       </div>
 
-      <SortButtons
-        sortConfig={filters.sortConfig}
-        onSort={actions.handleSort}
-      />
-
-      <Table>
+      <Table className="xl:w-4xl w-screen">
         <TableHeader>
           <TableRow>
             <TableHead className="text-foreground">{t("items")}</TableHead>
