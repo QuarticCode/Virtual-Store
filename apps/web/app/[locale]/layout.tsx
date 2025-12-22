@@ -8,6 +8,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Navbar } from "@/components/navbar/navbar";
 import { QueryProvider } from "@/lib/providers/query-provider";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,7 +39,7 @@ export default async function RootLayout({ children, params }: Props) {
   setRequestLocale(locale);
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ThemeProvider
           attribute="class"
@@ -49,6 +50,7 @@ export default async function RootLayout({ children, params }: Props) {
           <NextIntlClientProvider>
             <QueryProvider>
               <Navbar />
+              <Toaster />
               {children}
             </QueryProvider>
           </NextIntlClientProvider>

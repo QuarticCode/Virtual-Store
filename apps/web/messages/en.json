@@ -41,7 +41,12 @@
   "Cart": {
     "title": "Go to the cart",
     "alt": "Cart icon",
-    "items": "{count} items"
+    "items": "{count} items",
+    "confirmClearCart": {
+      "title": "Empty cart",
+      "description": "Do you really want to remove the products from the cart?.",
+      "action": "Yes"
+    }
   },
   "CounterInput": {
     "decrease": "Decrease quantity",

@@ -41,7 +41,12 @@
   "Cart": {
     "title": "Ir al carrito",
     "alt": "Icono de carrito",
-    "items": "{count} productos"
+    "items": "{count} productos",
+    "confirmClearCart": {
+      "title": "Vaciar carrito",
+      "description": "¿Desea realmente eliminar los productos del carrito?.",
+      "action": "Sí"
+    }
   },
   "CounterInput": {
     "decrease": "Disminuir cantidad",

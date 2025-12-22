@@ -5,6 +5,9 @@ export const useCart = () => {
 
   return {
     items: store.items,
+    getTotalAmount: store.items.reduce((accumulator, item) => {
+      return accumulator + item.quantity;
+    }, 0),
     totalItems: store.getTotalItems(),
     totalPrice: Number(store.getTotalPrice().toFixed(2)),
 

@@ -112,5 +112,8 @@ export function useCartFilters(items: CartItem[]) {
     filteredItems,
     filters,
     actions,
+    getTotalFilteredItems: filteredItems.reduce((accumulator, item) => {
+      return accumulator + item.quantity;
+    }, 0),
   };
 }

@@ -11,11 +11,12 @@ import { useCartFilters } from "@/hooks/use-cart-filters";
 import { SortButtons } from "./filters/short-buttons";
 
 export function CartTable() {
-  const { items } = useCart();
+  const { items, getTotalAmount } = useCart();
   const t = useTranslations("CartSummary");
-  const { filteredItems, filters, actions } = useCartFilters(items);
+  const { filteredItems, getTotalFilteredItems, filters, actions } =
+    useCartFilters(items);
 
-  if (items.length === 0) {
+  if (getTotalAmount === 0) {
     return (
       <div className="lg:w-full flex justify-center items-center">
         <p className="text-muted-foreground">{t("empty")}</p>
@@ -28,8 +29,8 @@ export function CartTable() {
       <div className="flex flex-col md:flex-row md:justify-between justify-center items-start md:items-center mb-6 gap-4">
         <div className="flex flex-col">
           <CartHeader
-            totalItems={items.length}
-            filteredItemsCount={filteredItems.length}
+            totalItems={getTotalAmount}
+            filteredItemsCount={getTotalFilteredItems}
           />
           <FilterControls
             searchTerm={filters.searchTerm}

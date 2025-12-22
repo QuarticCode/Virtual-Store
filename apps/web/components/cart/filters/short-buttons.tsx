@@ -1,9 +1,8 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { SortConfig } from "@/types/cart-table";
 import { ArrowUpDown } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { ClearCartButton } from "./clear-cart";
 
 interface SortButtonsProps {
   sortConfig: SortConfig;
@@ -54,6 +53,7 @@ export function SortButtons({ sortConfig, onSort }: SortButtonsProps) {
           />
         )}
       </Button>
+      <ClearCartButton />
     </div>
   );
 }
